@@ -5,9 +5,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      pay: 1000,
-      buy: 1,
-      payment: "None",
+      pay: null,
+      buy: null,
+      payment: null,
+      rate: null,
       results: null
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -22,19 +23,26 @@ class App extends React.Component {
 
   componentDidMount() {
    
-    // const url2 = "https://vpic.nhtsa.dot.gov/api/vehicles/getallmanufacturers?format=json";
-    const url2 = "https://api.coingate.com/v2/rates?format=json";
+    const url = "https://api.coingate.com/v2/rates?format=json";
  
-    fetch(url2)
+    fetch(url)
     .then(this.handleErrors)
     .then(jsonResponse => {
         const results = jsonResponse.trader.buy;
+        const asArray = Object.entries(results);
+        const tarif = asArray.filter(coin => coin[0] === "BTC");
+        const neededTarif = Object.entries(tarif[0][1]);
+        const veryNeeded = neededTarif[0][1];
+        // console.log(tarif[1])
+        // const coin = Object.entries(asArray[0][0]);
+         
+        // console.log(asArray2);
         // const results = jsonResponse.Results.map(result => ({
         //   id: 0,  
         //   Mfr_ID: result.Mfr_ID,
         //   Mfr_Name: result.Mfr_Name            
         // }));
-      this.setState({ results: results });
+      this.setState({ results: asArray, rate: veryNeeded });
     }).catch(error => console.log(error.message));
   }
 
