@@ -5,13 +5,16 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      pay: null,
-      buy: null,
+      inputPay: '',
+      inputBuy: '',
+      pay: "EUR",
+      buy: "BTC",
       payment: null,
-      rate: null,
-      results: null
+      results: [["BTC", ""], ["EUR", ""]],
+      resultsObj: {}
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.getRate = this.getRate.bind(this);
   }
 
   handleErrors(response) {
@@ -21,30 +24,33 @@ class App extends React.Component {
     return response.json();
   };
 
-  componentDidMount() {
-   
+  componentDidMount() {   
     const url = "https://api.coingate.com/v2/rates?format=json";
- 
     fetch(url)
     .then(this.handleErrors)
     .then(jsonResponse => {
-        const results = jsonResponse.trader.buy;
-        const asArray = Object.entries(results);
-        const tarif = asArray.filter(coin => coin[0] === "BTC");
-        const neededTarif = Object.entries(tarif[0][1]);
-        const veryNeeded = neededTarif[0][1];
-        // console.log(tarif[1])
-        // const coin = Object.entries(asArray[0][0]);
-         
-        // console.log(asArray2);
-        // const results = jsonResponse.Results.map(result => ({
-        //   id: 0,  
-        //   Mfr_ID: result.Mfr_ID,
-        //   Mfr_Name: result.Mfr_Name            
-        // }));
-      this.setState({ results: asArray, rate: veryNeeded });
+      const results = jsonResponse.trader.buy;
+      const asArray = Object.entries(results);
+      this.setState({ results: asArray, resultsObj: results });
     }).catch(error => console.log(error.message));
   }
+
+  getRate() {
+    const asArray = this.state.results;
+    const rates = asArray.filter(coin => coin[0] === this.state.buy);
+    const neededTarif = Object.entries(rates[0][1]);
+    const veryNeeded = neededTarif.filter(trf => trf[0] === this.state.pay);
+    const rate = veryNeeded[0][1];
+    return rate;
+    // from object:
+    // const asObject = this.state.resultsObj;
+    // const filteredByKey = Object.fromEntries(Object.entries(asObject).filter(([key, value]) => key === this.state.buy) );
+    // .....
+  }
+
+  // componentDidUpdate() {
+  //   console.log(this.getRate());
+  // }
 
   handleInputChange(event) {
     const target = event.target;
@@ -54,6 +60,20 @@ class App extends React.Component {
     this.setState({
       [name]: value
     });
+    if (name === "inputPay") {
+      this.setState({
+        inputBuy: value / this.getRate()
+      })
+    } else if (name === "inputBuy") {
+      this.setState({
+        inputPay: value * this.getRate()
+      })
+    } else {
+      this.setState({
+        inputPay: '',
+        inputBuy: ''
+      })
+    }
   }
 
   onSubmit(event) {
@@ -66,6 +86,9 @@ class App extends React.Component {
       <BuySell 
         handleChange={this.handleInputChange}
         onSubmit={this.onSubmit}
+        payValue={this.state.inputPay}
+        buyValue={this.state.inputBuy}
+        results={this.state.results}
       />
     );
   };
