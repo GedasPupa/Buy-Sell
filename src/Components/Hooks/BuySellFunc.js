@@ -3,7 +3,7 @@ import './BuySell.css';
 // import Option from '../Option/Option';
 
 function BuySell(props) {
-    const {handlePay, handleBuy, handleInputPay, handleInputBuy, inputPay, inputBuy, pay, buy} = props;
+    const {handlePay, handleBuy, handleInputPay, handleInputBuy, inputPay, inputBuy, pay, buy, paymentMethods, handlePayment} = props;
         return (
             <form className="form" >
                 <div className="form-row">
@@ -24,10 +24,12 @@ function BuySell(props) {
                 </div>
                 <p>Payment method</p> 
                 <div className="form-row">
-                    <select name="payment" id="payment" >
-                        <option value="bank">Bank transfer</option>
-                        <option value="card">Credit/Debit card</option>
-                        <option value="paypal">Paypal</option>
+                    <select name="payment" id="payment" onChange={handlePayment}>
+                        {
+                            paymentMethods.map(item => {
+                                return (<option value={item} key={item}>{item}</option>);
+                            })
+                        }
                     </select>
                 </div>
                 <div className="form-row">
