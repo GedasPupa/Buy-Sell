@@ -1,0 +1,10 @@
+button>span:first-of-type {    
+    /* background-image: url(https://s3.amazonaws.com/affiliate-sdk-production-configuration/assets/icons/ardr.svg); */
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 22px;
+    width: 22px;
+    display: inline-block;
+    background-size: contain;
+    margin-right: 0.5em;
+}
