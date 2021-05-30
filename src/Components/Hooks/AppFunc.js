@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import BuySell from '../Hooks/BuySellFunc';
 import axios from 'axios';
 
+const paymentMethods = ['Bank Transfer', 'Credit/Debit Card', 'Paypal', 'Mobile Account'];
+
 function App() {
     const [inputPay, setInputPay] = useState('');
     const [inputBuy, setInputBuy] = useState('');
     const [payCoin, setPayCoin] = useState('EUR');
     const [buyCoin, setBuyCoin] = useState('BTC');
     const [results, setResults] = useState('');
+    const [payment, setPayment] = useState(paymentMethods[0]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,7 +38,7 @@ function App() {
 
     useEffect(() => {
         setInputBuy(() => {
-            if ((inputPay / getRate()) === 0) {
+            if ((inputPay / getRate()) == '') {
                 return '';
             } else return inputPay / getRate();
         });
@@ -44,7 +47,7 @@ function App() {
 
     useEffect(() => {
         setInputPay(() => {
-            if (inputBuy * getRate() === 0) {
+            if (inputBuy * getRate() == '') {
                 return '';
             } else return inputBuy * getRate();
         });
@@ -57,13 +60,14 @@ function App() {
         handleBuy={({target}) => setBuyCoin(target.value)}
         handleInputPay={({target}) => setInputPay(target.value)}
         handleInputBuy={({target}) => setInputBuy(target.value)}
+        handlePayment={({target}) => setPayment(target.value)}
         // onSubmit={this.onSubmit}
         inputPay={inputPay}
         inputBuy={inputBuy}
         pay={payCoin}
         buy={buyCoin}
-        
-        // results={results}
+        paymentMethods={paymentMethods}
+        payment={payment}      
       />
     )
 }
