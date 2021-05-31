@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import BuySell from '../Hooks/BuySellFunc';
 import axios from 'axios';
+import CoinsList from './CoinsList';
+import FiatList from './FiatList';
 
-const paymentMethods = ['Bank Transfer', 'Credit/Debit Card', 'Paypal', 'Mobile Account'];
+const paymentMethods = ['Credit/Debit Card', 'Bank Transfer', 'Paypal', 'Mobile Account'];
 
 function App() {
     const [inputPay, setInputPay] = useState('');
@@ -55,6 +57,7 @@ function App() {
     }, [inputBuy, buyCoin]);
 
     return(
+      <>
         <BuySell 
         handlePay={({target}) => setPayCoin(target.value)}
         handleBuy={({target}) => setBuyCoin(target.value)}
@@ -68,7 +71,10 @@ function App() {
         buy={buyCoin}
         paymentMethods={paymentMethods}
         payment={payment}      
-      />
+        />
+        <CoinsList handleBuy={({target}) => setBuyCoin(target.name)} />
+        <FiatList handlePay={({target}) => setPayCoin(target.name)}/>
+      </>
     )
 }
 

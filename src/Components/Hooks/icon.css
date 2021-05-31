@@ -1,0 +1,13 @@
+button {    
+    /* background-image: url(https://s3.amazonaws.com/affiliate-sdk-production-configuration/assets/icons/ardr.svg); */
+    background-repeat: no-repeat;
+    background-position: left;
+    height: 50px;
+    width: 160px;
+    background-position-x: 10px;
+    text-align: left;
+    padding: 10px 10px 10px 50px;
+    /* display: inline-block; */
+    background-size: 22px 22px;
+    /* margin-right: 0.5em; */
+}

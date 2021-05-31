@@ -1,6 +1,5 @@
 import React from 'react';
 import './BuySell.css';
-// import Option from '../Option/Option';
 
 function BuySell(props) {
     const {handlePay, handleBuy, handleInputPay, handleInputBuy, inputPay, inputBuy, pay, buy, paymentMethods, handlePayment} = props;
@@ -16,7 +15,7 @@ function BuySell(props) {
                 </div>
                 <div className="form-row">
                     <input type="number" name="inputBuy" placeholder="Buy" onChange={handleInputBuy} value={inputBuy} />
-                    <select name="buy" id="buy" onChange={handleBuy} value={buy} >
+                    <select name="buy" id="buy" onChange={handleBuy} value={buy} >                                      
                         <option value="BTC">BTC</option>
                         <option value="ETH">ETH</option>
                         <option value="LTC">LTC</option>
@@ -34,7 +33,7 @@ function BuySell(props) {
                 </div>
                 <div className="form-row">
                     <button name="button" type="submit">Buy BTC</button>
-                </div>        
+                </div>
             </form>            
         );
     };
