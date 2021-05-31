@@ -31,10 +31,18 @@ const rub = {
     backgroundImage: iconUrls[5],
 }
 
+const display = {
+    display: "inline-block",
+}
+const none = {
+    display: "none",
+}
+
 function FiatList(props) {
-    const {handlePay} = props;
+    const {handlePay, toggle} = props;
+
     return(
-        <ul>
+        <ul style={toggle ? display : none}>
             <li className="list"><button style={eur} onClick={handlePay} name="EUR" className="link-drop">Euro (EUR)</button></li>
             <li className="list"><button style={gbp} onClick={handlePay} name="GBP" className="link-drop">Pound Sterling (GBP)</button></li>
             <li className="list"><button style={usd} onClick={handlePay} name="USD" className="link-drop">United States Dollar (USD)</button></li>
