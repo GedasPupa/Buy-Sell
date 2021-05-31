@@ -73,11 +73,18 @@ const usdt = {
 const qtum = {
     backgroundImage: iconUrls[15],
 }
+const display = {
+    display: "inline-block",
+}
+const none = {
+    display: "none",
+}
 
 function CoinsList(props) {
-    const {handleBuy} = props;
+    const {handleBuy, toggleCoin} = props;
+
     return(
-        <ul>
+        <ul style={toggleCoin ? display : none}>
             <li className="list"><button name="BTC" style={btc} onClick={handleBuy} className="link-drop">Bitcoin (BTC)</button></li>
             <li className="list"><button name="LTC" style={ltc} onClick={handleBuy} className="link-drop">Litecoin (LTC)</button></li>
             <li className="list"><button name="ETH" style={eth} onClick={handleBuy} className="link-drop">Ethereum (ETH)</button></li>

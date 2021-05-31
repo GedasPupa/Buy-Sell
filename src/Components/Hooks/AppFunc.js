@@ -13,7 +13,9 @@ function App() {
     const [buyCoin, setBuyCoin] = useState('BTC');
     const [results, setResults] = useState('');
     const [payment, setPayment] = useState(paymentMethods[0]);
-
+    const [toggle, setToggle] = useState(false);
+    const [toggleCoin, setToggleCoin] = useState(false);
+    
     useEffect(() => {
         const fetchData = async () => {
           const result = await axios(
@@ -56,6 +58,19 @@ function App() {
         setInputBuy(inputBuy);
     }, [inputBuy, buyCoin]);
 
+    function toggleFunc() {
+        if (toggleCoin) {
+            setToggleCoin(!toggleCoin);
+        }
+        setToggle(!toggle);
+    }
+    function toggleCoinFunc() {
+        if (toggle) {
+            setToggle(!toggle);
+        }
+        setToggleCoin(!toggleCoin);
+    }
+    
     return(
       <>
         <BuySell 
@@ -64,6 +79,8 @@ function App() {
         handleInputPay={({target}) => setInputPay(target.value)}
         handleInputBuy={({target}) => setInputBuy(target.value)}
         handlePayment={({target}) => setPayment(target.value)}
+        toggleFunc={toggleFunc}
+        toggleCoinFunc={toggleCoinFunc}
         // onSubmit={this.onSubmit}
         inputPay={inputPay}
         inputBuy={inputBuy}
@@ -72,8 +89,8 @@ function App() {
         paymentMethods={paymentMethods}
         payment={payment}      
         />
-        <CoinsList handleBuy={({target}) => setBuyCoin(target.name)} />
-        <FiatList handlePay={({target}) => setPayCoin(target.name)}/>
+        <CoinsList toggleCoin={toggleCoin} handleBuy={({target}) => setBuyCoin(target.name)} />
+        <FiatList toggle={toggle} handlePay={({target}) => setPayCoin(target.name)} />
       </>
     )
 }
