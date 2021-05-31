@@ -75,24 +75,25 @@ const qtum = {
 }
 
 function CoinsList(props) {
+    const {handleBuy} = props;
     return(
         <ul>
-            <li className="list"><button className="link-drop"><span name="BTC" style={btc} className="coin-icon"></span><span className="coin-text">Bitcoin (BTC)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="LTC" style={ltc} className="coin-icon"></span><span className="coin-text">Litecoin (LTC)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="ETH" style={eth} className="coin-icon"></span><span className="coin-text">Ethereum (ETH)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="XRP" style={xrp} className="coin-icon"></span><span className="coin-text">Ripple (XRP)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="BCH" style={bch} className="coin-icon"></span><span className="coin-text">Bitcoin Cash (BCH)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="BNB" style={bnb} className="coin-icon"></span><span className="coin-text">Binance Coin (BNB)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="XLM" style={xlm} className="coin-icon"></span><span className="coin-text">Stellar (XLM)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="TRX" style={trx} className="coin-icon"></span><span className="coin-text">TRON (TRX)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="ATOM" style={atom} className="coin-icon"></span><span className="coin-text">Cosmos (ATOM)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="NANO" style={nano} className="coin-icon"></span><span className="coin-text">NANO (NANO)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="PAX" style={pax} className="coin-icon"></span><span className="coin-text">PAX (PAX)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="DASH" style={dash} className="coin-icon"></span><span className="coin-text">Dash (DASH)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="DAI" style={dai} className="coin-icon"></span><span className="coin-text">Dai Stablecoin (DAI)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="EOS" style={eos} className="coin-icon"></span><span className="coin-text">EOS (EOS)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="USDT" style={usdt} className="coin-icon"></span><span className="coin-text">Tether (USDT)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="QTUM" style={qtum} className="coin-icon"></span><span className="coin-text">Qtum (QTUM)</span></button></li>
+            <li className="list"><button name="BTC" style={btc} onClick={handleBuy} className="link-drop">Bitcoin (BTC)</button></li>
+            <li className="list"><button name="LTC" style={ltc} onClick={handleBuy} className="link-drop">Litecoin (LTC)</button></li>
+            <li className="list"><button name="ETH" style={eth} onClick={handleBuy} className="link-drop">Ethereum (ETH)</button></li>
+            <li className="list"><button name="XRP" style={xrp} onClick={handleBuy} className="link-drop">Ripple (XRP)</button></li>
+            <li className="list"><button name="BCH" style={bch} onClick={handleBuy} className="link-drop">Bitcoin Cash (BCH)</button></li>
+            {/* <li className="list"><button name="BNB" style={bnb} onClick={handleBuy} className="link-drop">Binance Coin (BNB)</button></li> */}
+            {/* <li className="list"><button name="XLM" style={xlm} onClick={handleBuy} className="link-drop">Stellar (XLM)</button></li> */}
+            <li className="list"><button name="TRX" style={trx} onClick={handleBuy} className="link-drop">TRON (TRX)</button></li>
+            {/* <li className="list"><button name="ATOM" style={atom} onClick={handleBuy} className="link-drop">"ACosmos (ATOM)</button></li> */}
+            <li className="list"><button name="NANO" style={nano} onClick={handleBuy} className="link-drop">"NANO (NANO)</button></li>
+            {/* <li className="list"><button name="PAX" style={pax} onClick={handleBuy} className="link-drop">PAX (PAX)</button></li> */}
+            <li className="list"><button name="DASH" style={dash} onClick={handleBuy} className="link-drop">"Dash (DASH)</button></li>
+            <li className="list"><button name="DAI" style={dai} onClick={handleBuy} className="link-drop">Dai Stablecoin (DAI)</button></li>
+            {/* <li className="list"><button name="EOS" style={eos} onClick={handleBuy} className="link-drop">EOS (EOS)</button></li> */}
+            <li className="list"><button name="USDT" style={usdt} onClick={handleBuy} className="link-drop">"Tether (USDT)</button></li>
+            {/* <li className="list"><button name="QTUM" style={qtum} onClick={handleBuy} className="link-drop">"Qtum (QTUM)</button></li> */}
         </ul>
     )
 }

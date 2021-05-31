@@ -2,6 +2,7 @@ import React from 'react';
 import './icon.css';
 
 // USD, GBP, EUR, JPY, CNY, RUB
+
 const iconUrls = [
     `url(https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/usd.png?raw=true)`,
     `url(https://github.com/spothq/cryptocurrency-icons/blob/master/32/icon/gbp.png?raw=true)`,
@@ -31,14 +32,15 @@ const rub = {
 }
 
 function FiatList(props) {
+    const {handlePay} = props;
     return(
         <ul>
-            <li className="list"><button className="link-drop"><span name="EUR" style={eur} className="coin-icon"></span><span className="coin-text">Euro (EUR)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="GBP" style={gbp} className="coin-icon"></span><span className="coin-text">Pound Sterling (GBP)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="USD" style={usd} className="coin-icon"></span><span className="coin-text">United States Dollar (USD)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="JPY" style={jpy} className="coin-icon"></span><span className="coin-text">Japanese YEN (JPY)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="CNY" style={cny} className="coin-icon"></span><span className="coin-text">Chinese Yuan (CNY)</span></button></li>
-            <li className="list"><button className="link-drop"><span name="RUB" style={rub} className="coin-icon"></span><span className="coin-text">Russian Ruble (RUB)</span></button></li>
+            <li className="list"><button style={eur} onClick={handlePay} name="EUR" className="link-drop">Euro (EUR)</button></li>
+            <li className="list"><button style={gbp} onClick={handlePay} name="GBP" className="link-drop">Pound Sterling (GBP)</button></li>
+            <li className="list"><button style={usd} onClick={handlePay} name="USD" className="link-drop">United States Dollar (USD)</button></li>
+            <li className="list"><button style={jpy} onClick={handlePay} name="JPY" className="link-drop">Japanese YEN (JPY)</button></li>
+            <li className="list"><button style={cny} onClick={handlePay} name="CNY" className="link-drop">Chinese Yuan (CNY)</button></li>
+            <li className="list"><button style={rub} onClick={handlePay} name="RUB" className="link-drop">Russian Ruble (RUB)</button></li>
         </ul>
     )
 }

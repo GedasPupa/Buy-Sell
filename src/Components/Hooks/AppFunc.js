@@ -4,7 +4,7 @@ import axios from 'axios';
 import CoinsList from './CoinsList';
 import FiatList from './FiatList';
 
-const paymentMethods = ['Bank Transfer', 'Credit/Debit Card', 'Paypal', 'Mobile Account'];
+const paymentMethods = ['Credit/Debit Card', 'Bank Transfer', 'Paypal', 'Mobile Account'];
 
 function App() {
     const [inputPay, setInputPay] = useState('');
@@ -59,8 +59,8 @@ function App() {
     return(
       <>
         <BuySell 
-        handlePay={({target}) => setPayCoin(target.name)}
-        handleBuy={({target}) => setBuyCoin(target.name)}
+        handlePay={({target}) => setPayCoin(target.value)}
+        handleBuy={({target}) => setBuyCoin(target.value)}
         handleInputPay={({target}) => setInputPay(target.value)}
         handleInputBuy={({target}) => setInputBuy(target.value)}
         handlePayment={({target}) => setPayment(target.value)}
@@ -72,8 +72,8 @@ function App() {
         paymentMethods={paymentMethods}
         payment={payment}      
         />
-        <CoinsList />
-        <FiatList />
+        <CoinsList handleBuy={({target}) => setBuyCoin(target.name)} />
+        <FiatList handlePay={({target}) => setPayCoin(target.name)}/>
       </>
     )
 }
