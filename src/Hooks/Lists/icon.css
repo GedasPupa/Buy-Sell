@@ -6,7 +6,5 @@ button {
     background-position-x: 10px;
     text-align: left;
     padding: 10px 10px 10px 50px;
-    /* display: inline-block; */
     background-size: 22px 22px;
-    /* margin-right: 0.5em; */
 }
