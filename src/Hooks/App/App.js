@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import BuySell from '../Hooks/BuySellFunc';
+import BuySell from '../BuySell/BuySell';
 import axios from 'axios';
-import CoinsList from './CoinsList';
-import FiatList from './FiatList';
+import Header from '../Header/Header';
+import CoinsList from '../Lists/CoinsList';
+import FiatList from '../Lists/FiatList';
 
 const paymentMethods = ['Credit/Debit Card', 'Bank Transfer', 'Paypal', 'Mobile Account'];
 
@@ -21,14 +22,19 @@ function App() {
           const result = await axios(
             'https://api.coingate.com/v2/rates',
           );
-     
+    
           setResults(result.data.trader.buy);
-        };
-     
+        };     
         fetchData();
-      }, []); // -- posible to fetch on [payCoin, buyCoin] or other state changes --
+      }, []); // -- possible to fetch on [payCoin, buyCoin] or other state changes --
 
-    function getRate() {
+    function getRate() { 
+        // // possible to fetch new data before every inputPay/inputBuy count ( +time ):
+        // fetch('https://api.coingate.com/v2/rates')
+        // .then(response => response.json()).then(jsonResponse => {
+        //     setResults(jsonResponse.trader.buy);
+        // }).catch(error => console.log(error));
+
         if (results === '') {
             return;
         }
@@ -41,21 +47,23 @@ function App() {
     }
 
     useEffect(() => {
-        setInputBuy(() => {
-            if ((inputPay / getRate()) == '') {
-                return '';
-            } else return inputPay / getRate();
+        setInputBuy((prev) => {
+            const rate = getRate();
+            if ( inputPay * rate === prev && inputPay !== '' && prev !== '') {
+                console.log(`previous BUY: ${prev} /// new: ${inputBuy}`)
+                return prev;
+            } else return inputPay / rate;
         });
-        setInputPay(inputPay);
     }, [inputPay, payCoin]);
 
     useEffect(() => {
-        setInputPay(() => {
-            if (inputBuy * getRate() == '') {
-                return '';
-            } else return inputBuy * getRate();
+        setInputPay((prev) => {
+            const rate = getRate();
+            if (inputBuy / rate === prev && inputBuy !== '' && prev !== '') {
+                return prev;
+            } else return inputBuy * rate;
+              
         });
-        setInputBuy(inputBuy);
     }, [inputBuy, buyCoin]);
 
     function toggleFunc() {
@@ -73,6 +81,7 @@ function App() {
     
     return(
       <>
+        <Header />
         <BuySell 
         handlePay={({target}) => setPayCoin(target.value)}
         handleBuy={({target}) => setBuyCoin(target.value)}
