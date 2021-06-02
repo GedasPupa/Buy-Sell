@@ -19,7 +19,7 @@ function BuySell(props) {
                     <div class="flex-left">
                         <h1 class="main-title"><span class="green">Buy Bitcoin,</span> Ethereum, Litecoin and other crypto <span class="green">online</span></h1>
                         <p class="text">Why bother going through complicated exchanges? Buy cryptocurrency with top payment methods like SEPA bank transfer, Credit and Debit Card, Apple Pay, Mobile balance or Klarna. You can buy Bitcoin, Ethereum or any other popular crypto directly to your personal wallet without making any initial deposits. It's as easy as it gets!</p>
-                        <a href="#" class="start-now">Start now<span class="entitie">&gt;</span></a>
+                        <a href="http://example.com/" target="_blank" class="start-now">Start now<span class="entitie">&gt;</span></a>
                     </div>
                     <div class="flex-right">
                         <div class="flex-right-back">
