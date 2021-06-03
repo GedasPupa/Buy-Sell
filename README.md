@@ -50,4 +50,7 @@ Safari, Mozilla Firefox).
 
 ## Available Scripts
 
-### `npm start` ### `npm test` ### `npm run build` ### `npm run eject`
+### `npm start` 
+### `npm test` 
+### `npm run build` 
+### `npm run eject`
