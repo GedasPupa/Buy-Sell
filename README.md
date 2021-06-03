@@ -1,6 +1,6 @@
 # Junior Frontend Developer evaluation task
 
-Project deployd on Netlify. Link:[Buy & Sell](https://github.com/facebook/create-react-app).
+Project deployd on Netlify. Link: [Buy & Sell](https://buy-sell-coins.netlify.app).
 
 ## Task description
 
