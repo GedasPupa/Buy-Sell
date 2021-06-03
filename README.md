@@ -1,6 +1,5 @@
 # Junior Frontend Developer evaluation task
 
-Project deployd on Netlify. Link:[Buy & Sell](https://github.com/facebook/create-react-app).
 
 ## Task description
 
@@ -50,4 +49,7 @@ Safari, Mozilla Firefox).
 
 ## Available Scripts
 
-### `npm start` ### `npm test` ### `npm run build` ### `npm run eject`
+### `npm start` 
+### `npm test` 
+### `npm run build` 
+### `npm run eject`
