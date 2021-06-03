@@ -8,8 +8,8 @@ import FiatList from '../Lists/FiatList';
 const paymentMethods = ['Credit/Debit Card', 'Bank Transfer', 'Paypal', 'Mobile Account'];
 
 function App() {
-    const [inputPay, setInputPay] = useState('');
-    const [inputBuy, setInputBuy] = useState('');
+    const [inputPay, setInputPay] = useState(null);
+    const [inputBuy, setInputBuy] = useState(null);
     const [payCoin, setPayCoin] = useState('EUR');
     const [buyCoin, setBuyCoin] = useState('BTC');
     const [results, setResults] = useState('');
@@ -29,11 +29,7 @@ function App() {
       }, []); // -- possible to fetch on [payCoin, buyCoin] or other state changes --
 
     function getRate() { 
-        // // possible to fetch new data before every inputPay/inputBuy count ( +time ):
-        // fetch('https://api.coingate.com/v2/rates')
-        // .then(response => response.json()).then(jsonResponse => {
-        //     setResults(jsonResponse.trader.buy);
-        // }).catch(error => console.log(error));
+        // // possible to fetch new data before every inputPay/inputBuy count ( adds extra loading time??? ):
 
         if (results === '') {
             return;
@@ -49,8 +45,7 @@ function App() {
     useEffect(() => {
         setInputBuy((prev) => {
             const rate = getRate();
-            if ( inputPay * rate === prev && inputPay !== '' && prev !== '') {
-                console.log(`previous BUY: ${prev} /// new: ${inputBuy}`)
+            if ( inputPay * rate === prev && inputBuy && null) {
                 return prev;
             } else return inputPay / rate;
         });
@@ -59,7 +54,7 @@ function App() {
     useEffect(() => {
         setInputPay((prev) => {
             const rate = getRate();
-            if (inputBuy / rate === prev && inputBuy !== '' && prev !== '') {
+            if (inputBuy / rate === prev) {
                 return prev;
             } else return inputBuy * rate;
               
@@ -83,23 +78,29 @@ function App() {
       <>
         <Header />
         <BuySell 
-        handlePay={({target}) => setPayCoin(target.value)}
-        handleBuy={({target}) => setBuyCoin(target.value)}
-        handleInputPay={({target}) => setInputPay(target.value)}
-        handleInputBuy={({target}) => setInputBuy(target.value)}
-        handlePayment={({target}) => setPayment(target.value)}
-        toggleFunc={toggleFunc}
-        toggleCoinFunc={toggleCoinFunc}
-        // onSubmit={this.onSubmit}
-        inputPay={inputPay}
-        inputBuy={inputBuy}
-        pay={payCoin}
-        buy={buyCoin}
-        paymentMethods={paymentMethods}
-        payment={payment}      
+            handlePay={({target}) => setPayCoin(target.name)}
+            handleBuy={({target}) => setBuyCoin(target.value)}
+            handleInputPay={({target}) => setInputPay(target.value)}
+            handleInputBuy={({target}) => setInputBuy(target.value)}
+            handlePayment={({target}) => setPayment(target.value)}
+            toggleFunc={toggleFunc}
+            toggleCoinFunc={toggleCoinFunc}
+            inputPay={inputPay}
+            inputBuy={inputBuy}
+            pay={payCoin}
+            buy={buyCoin}
+            paymentMethods={paymentMethods}
+            payment={payment}      
         />
-        <CoinsList toggleCoin={toggleCoin} handleBuy={({target}) => setBuyCoin(target.name)} />
-        <FiatList toggle={toggle} handlePay={({target}) => setPayCoin(target.name)} />
+        <CoinsList
+            toggleCoin={toggleCoin}
+            toggleCoinFunc={toggleCoinFunc} 
+            handleBuy={({target}) => setBuyCoin(target.name)} />
+        <FiatList
+            toggle={toggle}
+            toggleFunc={toggleFunc}
+            handlePay={({target}) => setPayCoin(target.name)} 
+        />
       </>
     )
 }
