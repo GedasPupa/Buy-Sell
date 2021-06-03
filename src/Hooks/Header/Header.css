@@ -9,8 +9,8 @@
     box-shadow: 0 5px 11px 0 rgba(29, 0, 62, 0.07);
 }
 
-.header>div {
-    width: 50%;
+.header > div:first-child {
+    width: 70%;
 }
 
 .logo {
@@ -52,3 +52,4 @@ a {
     color: #FFFFFF;
     font-size: 18px;
 }
+
