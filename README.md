@@ -40,6 +40,7 @@ Safari, Mozilla Firefox).
 
 ## Ideas for future updates
 
+- Mobile/Tablet version (with CSS grid).
 - In PAY/BUY fields display all trading pairs given from database.
 - - EUR / BTC stays preselected.
 - - Then user selects PAY item, map threw all selected item trading pairs (and display them if user decides to change BUY option).
