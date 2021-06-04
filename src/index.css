@@ -292,17 +292,6 @@ button, .btn-buy:hover {
   .main-left {
     left: 250px;
   }
-  .background {
-    width: 83.5vw;
-  }
-  .main-title {
-    font-size: 36px;
-    line-height: 42px;
-  }
-  .text {
-    font-size: 16px;
-    line-height: 25px;
-  }
   .main-right {
     left: 760px;
   }
